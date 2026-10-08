@@ -1,0 +1,2 @@
+ch.ubique.backend.errorprone.OpenEnumStructure
+ch.ubique.backend.errorprone.OpenEnumNestedTypeImport
