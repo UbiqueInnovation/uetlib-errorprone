@@ -6,7 +6,7 @@
 
     <groupId>ch.ubique.uetlib</groupId>
     <artifactId>uetlib-errorprone</artifactId>
-    <version>0.1.0-SNAPSHOT</version>
+    <version>2.0.0-SNAPSHOT</version>
     <packaging>jar</packaging>
     <name>Uetlib Error Prone Checks</name>
 
