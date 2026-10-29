@@ -32,7 +32,7 @@ In `uetlib-parent`'s `maven-compiler-plugin` configuration:
 ```xml
 <annotationProcessorPaths>
   <path>
-    <groupId>ch.ubique</groupId>
+    <groupId>ch.ubique.uetlib</groupId>
     <artifactId>uetlib-errorprone</artifactId>
   </path>
 </annotationProcessorPaths>
