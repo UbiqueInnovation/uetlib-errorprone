@@ -7,10 +7,10 @@ Note these are **javac plugins, not annotation processors** — they merely trav
 
 ## Checks
 
-| Check | Enforces |
-| --- | --- |
-| `OpenEnumStructure` | An `OpenEnumValue` interface is sealed over exactly two subtypes: an `enum Known` and a `record Unknown` (or final class) implementing `UnknownOpenEnumValue`, plus a `static OpenEnumSet` field |
-| `OpenEnumNestedTypeImport` | The nested `Known`/`Unknown` types are not imported directly (a bare `Known.RED` hides which open enum it belongs to). Importing the constants — `Color.Known.*` — is fine |
+| Check                      | Enforces                                                                                                                                                                                         |
+|----------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `OpenEnumStructure`        | An `OpenEnumValue` interface is sealed over exactly two subtypes: an `enum Known` and a `record Unknown` (or final class) implementing `UnknownOpenEnumValue`, plus a `static OpenEnumSet` field |
+| `OpenEnumNestedTypeImport` | The nested `Known`/`Unknown` types are not imported directly (a bare `Known.RED` hides which open enum it belongs to). Importing the constants — `Color.Known.*` — is fine                       |
 
 Open enums are resolved reflectively by integrations (Jackson, OpenAPI), so a malformed one
 otherwise fails at runtime on the first read of that type — late, and easy to miss.
@@ -31,10 +31,10 @@ In `uetlib-parent`'s `maven-compiler-plugin` configuration:
 
 ```xml
 <annotationProcessorPaths>
-  <path>
-    <groupId>ch.ubique.uetlib</groupId>
-    <artifactId>uetlib-errorprone</artifactId>
-  </path>
+    <path>
+        <groupId>ch.ubique</groupId>
+        <artifactId>uetlib-errorprone</artifactId>
+    </path>
 </annotationProcessorPaths>
 ```
 
@@ -50,3 +50,7 @@ Loading checks from the processor path additionally requires
 already passes.
 
 Suppress a check where a deviation is deliberate with `@SuppressWarnings("OpenEnumStructure")`.
+
+## Changelog
+
+See [CHANGELOG.md](CHANGELOG.md)
