@@ -21,6 +21,27 @@
       there is no dependency edge back into the code they inspect.
     -->
 
+    <description>Error Prone checks for uetlib coding conventions.</description>
+    <url>https://github.com/UbiqueInnovation/uetlib-errorprone</url>
+    <licenses>
+        <license>
+            <name>Apache License, Version 2.0</name>
+            <url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+    <organization>
+        <name>Ubique Innovation AG</name>
+        <url>https://www.ubique.ch</url>
+    </organization>
+    <developers>
+        <developer>
+            <name>Ubique Innovation AG</name>
+            <organization>Ubique Innovation AG</organization>
+            <organizationUrl>https://www.ubique.ch</organizationUrl>
+        </developer>
+    </developers>
+
     <properties>
         <java.version>25</java.version>
 
@@ -143,4 +164,9 @@
             </plugin>
         </plugins>
     </build>
+    <scm child.scm.url.inherit.append.path="false" child.scm.connection.inherit.append.path="false" child.scm.developerConnection.inherit.append.path="false">
+        <connection>scm:git:https://github.com/UbiqueInnovation/uetlib-errorprone.git</connection>
+        <developerConnection>scm:git:ssh://git@github.com/UbiqueInnovation/uetlib-errorprone.git</developerConnection>
+        <url>https://github.com/UbiqueInnovation/uetlib-errorprone</url>
+    </scm>
 </project>
