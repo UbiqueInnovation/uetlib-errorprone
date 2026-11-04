@@ -1,6 +1,7 @@
-package ch.ubique.uetlib.errorprone;
+package ch.uetlib.errorprone;
 
 import com.google.errorprone.CompilationTestHelper;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -11,23 +12,23 @@ class OpenEnumStructureTest {
      * against this check, so depending on it here would be circular.
      */
     private static final String[] OPEN_ENUM_STUBS = {
-        "ch/ubique/uetlib/core/openenum/OpenEnumValue.java",
+        "ch/uetlib/core/openenum/OpenEnumValue.java",
         """
-        package ch.ubique.uetlib.core.openenum;
+        package ch.uetlib.core.openenum;
 
         public interface OpenEnumValue<V> {
             V value();
         }
         """,
-        "ch/ubique/uetlib/core/openenum/UnknownOpenEnumValue.java",
+        "ch/uetlib/core/openenum/UnknownOpenEnumValue.java",
         """
-        package ch.ubique.uetlib.core.openenum;
+        package ch.uetlib.core.openenum;
 
         public interface UnknownOpenEnumValue<V> extends OpenEnumValue<V> {}
         """,
-        "ch/ubique/uetlib/core/openenum/OpenEnumSet.java",
+        "ch/uetlib/core/openenum/OpenEnumSet.java",
         """
-        package ch.ubique.uetlib.core.openenum;
+        package ch.uetlib.core.openenum;
 
         public final class OpenEnumSet<T extends OpenEnumValue<V>, V> {
             public static <T extends OpenEnumValue<V>, V> OpenEnumSet<T, V> of(
@@ -54,7 +55,7 @@ class OpenEnumStructureTest {
         helper.addSourceLines(
                         "Color.java",
                         """
-                        import ch.ubique.uetlib.core.openenum.*;
+                        import ch.uetlib.core.openenum.*;
 
                         public sealed interface Color extends OpenEnumValue<String> {
 
@@ -78,7 +79,7 @@ class OpenEnumStructureTest {
         helper.addSourceLines(
                         "Color.java",
                         """
-                        import ch.ubique.uetlib.core.openenum.*;
+                        import ch.uetlib.core.openenum.*;
 
                         // BUG: Diagnostic contains: must be sealed
                         public interface Color extends OpenEnumValue<String> {
@@ -93,7 +94,7 @@ class OpenEnumStructureTest {
         helper.addSourceLines(
                         "Color.java",
                         """
-                        import ch.ubique.uetlib.core.openenum.*;
+                        import ch.uetlib.core.openenum.*;
 
                         // BUG: Diagnostic contains: must permit exactly two subtypes
                         public sealed interface Color extends OpenEnumValue<String> {
@@ -114,7 +115,7 @@ class OpenEnumStructureTest {
         helper.addSourceLines(
                         "Color.java",
                         """
-                        import ch.ubique.uetlib.core.openenum.*;
+                        import ch.uetlib.core.openenum.*;
 
                         // BUG: Diagnostic contains: must name its constants enum `Known`
                         public sealed interface Color extends OpenEnumValue<String> {
@@ -138,7 +139,7 @@ class OpenEnumStructureTest {
         helper.addSourceLines(
                         "Color.java",
                         """
-                        import ch.ubique.uetlib.core.openenum.*;
+                        import ch.uetlib.core.openenum.*;
 
                         // BUG: Diagnostic contains: must name its unknown carrier `Unknown`
                         public sealed interface Color extends OpenEnumValue<String> {
@@ -162,7 +163,7 @@ class OpenEnumStructureTest {
         helper.addSourceLines(
                         "Color.java",
                         """
-                        import ch.ubique.uetlib.core.openenum.*;
+                        import ch.uetlib.core.openenum.*;
 
                         // BUG: Diagnostic contains: must implement UnknownOpenEnumValue
                         public sealed interface Color extends OpenEnumValue<String> {
@@ -185,7 +186,7 @@ class OpenEnumStructureTest {
         helper.addSourceLines(
                         "Color.java",
                         """
-                        import ch.ubique.uetlib.core.openenum.*;
+                        import ch.uetlib.core.openenum.*;
 
                         // BUG: Diagnostic contains: must declare a static OpenEnumSet field
                         public sealed interface Color extends OpenEnumValue<String> {

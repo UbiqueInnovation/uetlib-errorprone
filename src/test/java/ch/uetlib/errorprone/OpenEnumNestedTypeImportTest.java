@@ -1,6 +1,7 @@
-package ch.ubique.uetlib.errorprone;
+package ch.uetlib.errorprone;
 
 import com.google.errorprone.CompilationTestHelper;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -13,18 +14,18 @@ class OpenEnumNestedTypeImportTest {
         helper =
                 CompilationTestHelper.newInstance(OpenEnumNestedTypeImport.class, getClass())
                         .addSourceLines(
-                                "ch/ubique/uetlib/core/openenum/OpenEnumValue.java",
+                                "ch/uetlib/core/openenum/OpenEnumValue.java",
                                 """
-                                package ch.ubique.uetlib.core.openenum;
+                                package ch.uetlib.core.openenum;
 
                                 public interface OpenEnumValue<V> {
                                     V value();
                                 }
                                 """)
                         .addSourceLines(
-                                "ch/ubique/uetlib/core/openenum/UnknownOpenEnumValue.java",
+                                "ch/uetlib/core/openenum/UnknownOpenEnumValue.java",
                                 """
-                                package ch.ubique.uetlib.core.openenum;
+                                package ch.uetlib.core.openenum;
 
                                 public interface UnknownOpenEnumValue<V>
                                         extends OpenEnumValue<V> {}
@@ -34,7 +35,7 @@ class OpenEnumNestedTypeImportTest {
                                 """
                                 package colour;
 
-                                import ch.ubique.uetlib.core.openenum.*;
+                                import ch.uetlib.core.openenum.*;
 
                                 public sealed interface Color extends OpenEnumValue<String> {
 

@@ -1,4 +1,4 @@
-package ch.ubique.uetlib.errorprone;
+package ch.uetlib.errorprone;
 
 import static com.google.errorprone.BugPattern.SeverityLevel.ERROR;
 
@@ -37,7 +37,7 @@ import com.sun.source.tree.ImportTree;
 public final class OpenEnumNestedTypeImport extends BugChecker
         implements BugChecker.ImportTreeMatcher {
 
-    private static final String OPEN_ENUM_VALUE = "ch.ubique.uetlib.core.openenum.OpenEnumValue";
+    private static final String OPEN_ENUM_VALUE = "ch.uetlib.core.openenum.OpenEnumValue";
 
     private static final String KNOWN = "Known";
     private static final String UNKNOWN = "Unknown";

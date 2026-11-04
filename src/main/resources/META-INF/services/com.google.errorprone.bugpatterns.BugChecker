@@ -1,2 +1,2 @@
-ch.ubique.uetlib.errorprone.OpenEnumStructure
-ch.ubique.uetlib.errorprone.OpenEnumNestedTypeImport
+ch.uetlib.errorprone.OpenEnumStructure
+ch.uetlib.errorprone.OpenEnumNestedTypeImport
