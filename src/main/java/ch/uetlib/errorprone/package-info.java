@@ -1,4 +1,4 @@
 @NullMarked
-package ch.ubique.uetlib.errorprone;
+package ch.uetlib.errorprone;
 
 import org.jspecify.annotations.NullMarked;

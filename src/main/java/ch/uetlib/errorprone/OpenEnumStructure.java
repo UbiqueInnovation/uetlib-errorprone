@@ -1,4 +1,4 @@
-package ch.ubique.uetlib.errorprone;
+package ch.uetlib.errorprone;
 
 import static com.google.errorprone.BugPattern.SeverityLevel.ERROR;
 
@@ -12,6 +12,7 @@ import com.sun.source.tree.VariableTree;
 import com.sun.tools.javac.code.Flags;
 import com.sun.tools.javac.code.Symbol;
 import com.sun.tools.javac.code.Type;
+
 import org.jspecify.annotations.Nullable;
 
 /**
@@ -42,7 +43,7 @@ import org.jspecify.annotations.Nullable;
         linkType = BugPattern.LinkType.NONE)
 public final class OpenEnumStructure extends BugChecker implements BugChecker.ClassTreeMatcher {
 
-    private static final String PACKAGE = "ch.ubique.uetlib.core.openenum.";
+    private static final String PACKAGE = "ch.uetlib.core.openenum.";
     private static final String OPEN_ENUM_VALUE = PACKAGE + "OpenEnumValue";
     private static final String UNKNOWN_OPEN_ENUM_VALUE = PACKAGE + "UnknownOpenEnumValue";
     private static final String OPEN_ENUM_SET = PACKAGE + "OpenEnumSet";
