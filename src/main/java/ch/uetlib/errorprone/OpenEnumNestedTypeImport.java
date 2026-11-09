@@ -1,4 +1,4 @@
-package ch.ubique.backend.errorprone;
+package ch.uetlib.errorprone;
 
 import static com.google.errorprone.BugPattern.SeverityLevel.ERROR;
 
@@ -6,7 +6,6 @@ import com.google.errorprone.BugPattern;
 import com.google.errorprone.VisitorState;
 import com.google.errorprone.bugpatterns.BugChecker;
 import com.google.errorprone.matchers.Description;
-
 import com.sun.source.tree.ImportTree;
 
 /**
@@ -38,7 +37,7 @@ import com.sun.source.tree.ImportTree;
 public final class OpenEnumNestedTypeImport extends BugChecker
         implements BugChecker.ImportTreeMatcher {
 
-    private static final String OPEN_ENUM_VALUE = "ch.ubique.backend.core.openenum.OpenEnumValue";
+    private static final String OPEN_ENUM_VALUE = "ch.uetlib.core.openenum.OpenEnumValue";
 
     private static final String KNOWN = "Known";
     private static final String UNKNOWN = "Unknown";
@@ -103,5 +102,4 @@ public final class OpenEnumNestedTypeImport extends BugChecker
                                 state.getTypes().erasure(ownerType),
                                 state.getTypes().erasure(openEnumValue));
     }
-
 }

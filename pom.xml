@@ -4,9 +4,9 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>ch.ubique</groupId>
+    <groupId>ch.uetlib</groupId>
     <artifactId>uetlib-errorprone</artifactId>
-    <version>0.1.0-SNAPSHOT</version>
+    <version>2.0.0-SNAPSHOT</version>
     <packaging>jar</packaging>
     <name>Uetlib Error Prone Checks</name>
 
@@ -20,6 +20,27 @@
       It also does NOT depend on uetlib-core. The checks match types by fully-qualified name, so
       there is no dependency edge back into the code they inspect.
     -->
+
+    <description>Error Prone checks for uetlib coding conventions.</description>
+    <url>https://github.com/UbiqueInnovation/uetlib-errorprone</url>
+    <licenses>
+        <license>
+            <name>Apache License, Version 2.0</name>
+            <url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+    <organization>
+        <name>Ubique Innovation AG</name>
+        <url>https://www.ubique.ch</url>
+    </organization>
+    <developers>
+        <developer>
+            <name>Ubique Innovation AG</name>
+            <organization>Ubique Innovation AG</organization>
+            <organizationUrl>https://www.ubique.ch</organizationUrl>
+        </developer>
+    </developers>
 
     <properties>
         <java.version>25</java.version>
@@ -36,6 +57,19 @@
         <error-prone.version>2.50.0</error-prone.version>
         <jspecify.version>1.0.1</jspecify.version>
         <junit.version>5.11.3</junit.version>
+
+        <!-- Sonar & Jacoco coverage reports -->
+        <!-- Directory holding the aggregated JaCoCo report, relative to the root of the Maven build
+             (${maven.multiModuleProjectDirectory}, i.e. the directory mvn was invoked in):
+             - single-module project: the build root itself, `.` (the default) - the report is written
+               to the project's own target/site/jacoco-aggregate/jacoco.xml
+             - multi-module project: the module running jacoco:report-aggregate, overridden once in the
+               project parent, e.g. <sonar.coverage.module>{{project}}-coverage</sonar.coverage.module> -->
+        <sonar.coverage.jacoco.xmlReportPaths>target/site/jacoco-aggregate/jacoco.xml</sonar.coverage.jacoco.xmlReportPaths>
+        <sonar.projectName>${project.artifactId}</sonar.projectName>
+        <sonar.projectKey>UbiqueInnovation_${sonar.projectName}</sonar.projectKey>
+        <sonar.organization>ubiqueinnovation</sonar.organization>
+        <sonar.host.url>https://sonarcloud.io</sonar.host.url>
     </properties>
 
     <dependencyManagement>
@@ -143,4 +177,112 @@
             </plugin>
         </plugins>
     </build>
+    <scm child.scm.url.inherit.append.path="false" child.scm.connection.inherit.append.path="false" child.scm.developerConnection.inherit.append.path="false">
+        <connection>scm:git:https://github.com/UbiqueInnovation/uetlib-errorprone.git</connection>
+        <developerConnection>scm:git:ssh://git@github.com/UbiqueInnovation/uetlib-errorprone.git</developerConnection>
+        <url>https://github.com/UbiqueInnovation/uetlib-errorprone</url>
+    </scm>
+    <!-- Explicit opt-in: ordinary builds and private consumers do not publish to Central. -->
+    <profiles>
+        <profile>
+            <id>central-release</id>
+            <properties>
+                <central.publishing.skip>false</central.publishing.skip>
+                <central.publishing.skipUpload>false</central.publishing.skipUpload>
+            </properties>
+            <build>
+                <resources>
+                    <resource><directory>src/main/resources</directory></resource>
+                    <resource>
+                        <directory>${maven.multiModuleProjectDirectory}</directory>
+                        <targetPath>META-INF/uetlib</targetPath>
+                        <filtering>false</filtering>
+                        <includes>
+                            <include>LICENSE*</include><include>NOTICE*</include>
+                            <include>COPYING*</include><include>AUTHORS</include><include>CREDITS</include>
+                            <include>LICENSES/**</include><include>PROVENANCE.md</include>
+                        </includes>
+                    </resource>
+                </resources>
+                <plugins>
+                    <plugin>
+                        <groupId>org.sonatype.central</groupId>
+                        <artifactId>central-publishing-maven-plugin</artifactId>
+                        <version>0.12.0</version>
+                        <configuration>
+                            <publishingServerId>central</publishingServerId>
+                            <deploymentName>${project.groupId}:${project.artifactId}:${project.version}</deploymentName>
+                            <autoPublish>true</autoPublish>
+                            <waitUntil>validated</waitUntil>
+                            <skipPublishing>${central.publishing.skip}</skipPublishing>
+                            <skipUpload>${central.publishing.skipUpload}</skipUpload>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <id>central-bundle</id>
+                                <phase>deploy</phase>
+                                <goals><goal>publish</goal></goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-gpg-plugin</artifactId>
+                        <version>3.2.8</version>
+                        <configuration>
+                            <bestPractices>true</bestPractices>
+                            <skip>${central.publishing.skip}</skip>
+                            <gpgArguments>
+                                <arg>--pinentry-mode</arg>
+                                <arg>loopback</arg>
+                            </gpgArguments>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <id>sign-artifacts</id>
+                                <phase>verify</phase>
+                                <goals><goal>sign</goal></goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-source-plugin</artifactId>
+                        <version>3.4.0</version>
+                        <executions>
+                            <execution>
+                                <id>attach-sources</id>
+                                <phase>package</phase>
+                                <goals><goal>jar-no-fork</goal></goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-javadoc-plugin</artifactId>
+                        <version>3.12.0</version>
+                        <configuration>
+                            <doclint>none</doclint>
+                            <quiet>true</quiet>
+                            <!-- Javadoc needs the same javac exports as compilation. -->
+                            <additionalOptions>
+                                <additionalOption>--add-exports=jdk.compiler/com.sun.source.tree=ALL-UNNAMED</additionalOption>
+                                <additionalOption>--add-exports=jdk.compiler/com.sun.tools.javac.api=ALL-UNNAMED</additionalOption>
+                                <additionalOption>--add-exports=jdk.compiler/com.sun.tools.javac.code=ALL-UNNAMED</additionalOption>
+                                <additionalOption>--add-exports=jdk.compiler/com.sun.tools.javac.tree=ALL-UNNAMED</additionalOption>
+                                <additionalOption>--add-exports=jdk.compiler/com.sun.tools.javac.util=ALL-UNNAMED</additionalOption>
+                            </additionalOptions>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <id>attach-javadocs</id>
+                                <phase>package</phase>
+                                <goals><goal>jar</goal></goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 </project>
