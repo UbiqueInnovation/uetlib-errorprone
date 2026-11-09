@@ -1,3 +1,7 @@
 target/
 
+.sonar/
+
 .idea/
+
+.DS_Store
