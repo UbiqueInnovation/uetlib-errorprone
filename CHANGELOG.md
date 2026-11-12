@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## 0.1.2
+
+- Use shared Maven build and publish workflows at `v1.0.0` to enforce formatting checks in CI.
+- Apply Spotless formatting to Error Prone sources and tests.
+
 ## 0.1.1
 
 - Clarify configuration-property migration guidance for consumers.

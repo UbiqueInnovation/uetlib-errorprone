@@ -1,7 +1,6 @@
 package ch.uetlib.errorprone;
 
 import com.google.errorprone.CompilationTestHelper;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
