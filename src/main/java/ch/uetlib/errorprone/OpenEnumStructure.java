@@ -12,7 +12,6 @@ import com.sun.source.tree.VariableTree;
 import com.sun.tools.javac.code.Flags;
 import com.sun.tools.javac.code.Symbol;
 import com.sun.tools.javac.code.Type;
-
 import org.jspecify.annotations.Nullable;
 
 /**
