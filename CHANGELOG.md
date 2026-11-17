@@ -2,6 +2,8 @@
 
 ## 0.1.2
 
+- Use shared Maven workflows at `v1.1.0`: wait for the SonarCloud quality gate and analyse with the
+  uetlib-only Sonar token.
 - Use shared Maven build and publish workflows at `v1.0.0` to enforce formatting checks in CI.
 - Apply Spotless formatting to Error Prone sources and tests.
 
