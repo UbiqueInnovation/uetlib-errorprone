@@ -56,7 +56,7 @@
 
         <error-prone.version>2.52.0</error-prone.version>
         <jspecify.version>1.0.1</jspecify.version>
-        <junit.version>5.14.4</junit.version>
+        <junit.version>6.1.3</junit.version>
 
         <!-- Sonar & Jacoco coverage reports -->
         <!-- Directory holding the aggregated JaCoCo report, relative to the root of the Maven build

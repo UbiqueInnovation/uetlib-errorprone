@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## 1.0.0
+
+- First stable release of the `OpenEnumStructure` and `OpenEnumNestedTypeImport` checks.
+- Updated dependencies and actions.
+
 ## 0.1.2
 
 - Build pull requests, including forks, and pushes to `main` instead of every branch push; use shared Maven
