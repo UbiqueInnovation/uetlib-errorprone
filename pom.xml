@@ -56,7 +56,7 @@
 
         <error-prone.version>2.50.0</error-prone.version>
         <jspecify.version>1.0.1</jspecify.version>
-        <junit.version>5.11.3</junit.version>
+        <junit.version>5.11.4</junit.version>
 
         <!-- Sonar & Jacoco coverage reports -->
         <!-- Directory holding the aggregated JaCoCo report, relative to the root of the Maven build
@@ -161,7 +161,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>3.5.2</version>
+                <version>3.5.6</version>
                 <configuration>
                     <argLine>
                         --add-exports jdk.compiler/com.sun.tools.javac.api=ALL-UNNAMED
